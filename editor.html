@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4f5fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1016" media="(prefers-color-scheme: dark)">
+  <title>Редактор словника — Woordjes</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="page-editor">
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="btn btn--ghost btn--back" href="index.html" data-leave><span data-icon="back"></span>Словники</a>
+      <span class="topbar__title" id="page-title">Новий словник</span>
+    </div>
+  </header>
+
+  <main class="container editor">
+    <section class="panel editor__notfound" id="not-found" hidden>
+      <h1 class="panel__title">Словник не знайдено</h1>
+      <p class="muted">Можливо, його було видалено.</p>
+      <a class="btn btn--primary" href="index.html">До словників</a>
+    </section>
+
+    <form class="editor__form" id="editor-form" novalidate autocomplete="off">
+      <section class="panel">
+        <div class="field">
+          <label class="field__label" for="dict-name">Назва словника</label>
+          <input class="input input--title" id="dict-name" type="text" placeholder="Наприклад, Dutch A1" maxlength="80" aria-describedby="name-error" required>
+          <p class="field-error" id="name-error" hidden></p>
+        </div>
+      </section>
+
+      <section class="panel panel--words" aria-labelledby="words-title">
+        <div class="panel__head">
+          <h2 class="panel__title" id="words-title">Слова</h2>
+          <span class="badge" id="word-count">0 слів</span>
+        </div>
+
+        <div class="word-head" aria-hidden="true">
+          <span>#</span>
+          <span>Українське слово</span>
+          <span>Nederlands</span>
+          <span></span>
+        </div>
+
+        <ol class="word-list" id="word-rows"></ol>
+
+        <p class="field-error" id="words-error" hidden></p>
+
+        <button class="btn btn--dashed btn--block" type="button" id="add-row"><span data-icon="plus"></span>Додати слово</button>
+
+        <p class="editor__tip muted">
+          <kbd>Enter</kbd> переходить до наступного поля і створює новий рядок.
+          Можна вставити одразу список рядків формату <code>будинок: huis</code>.
+        </p>
+      </section>
+
+      <div class="editor-bar">
+        <div class="container editor-bar__inner">
+          <button class="btn btn--danger-ghost" type="button" id="delete-dict" hidden><span data-icon="trash"></span><span class="btn__label">Видалити словник</span></button>
+          <span class="editor-bar__spacer"></span>
+          <a class="btn btn--ghost" href="index.html" data-leave>Скасувати</a>
+          <button class="btn btn--primary btn--lg" type="submit"><span data-icon="check"></span>Зберегти</button>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <script type="module" src="assets/js/editor.js"></script>
+</body>
+</html>
