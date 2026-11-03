@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4f5fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1016" media="(prefers-color-scheme: dark)">
+  <title>Навчання — Woordjes</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="page-study">
+  <header class="study-top">
+    <div class="study-top__inner">
+      <a class="icon-btn icon-btn--soft" href="index.html" aria-label="Назад до словників" title="До словників"><span data-icon="back"></span></a>
+      <div class="study-top__title">
+        <h1 class="study-top__name" id="dict-name">Навчання</h1>
+        <p class="study-top__round" id="round-info"></p>
+      </div>
+      <span class="timer" id="timer" aria-label="Час навчання"><span data-icon="clock"></span><span id="timer-value">00:00</span></span>
+    </div>
+    <div class="progress" id="progress">
+      <div class="progress__row">
+        <span class="progress__count"><strong id="progress-known">0</strong> / <span id="progress-total">0</span></span>
+        <span class="progress__percent" id="progress-percent">0%</span>
+      </div>
+      <div class="progress__track" role="progressbar" aria-label="Вивчено слів" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar">
+        <div class="progress__fill" id="progress-fill"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="study-main">
+    <section class="study" id="study-view" hidden>
+      <div class="card-stage" id="card-stage">
+        <div class="card" id="card" tabindex="0" role="group" aria-roledescription="картка" aria-label="Картка. Натисніть, щоб перевернути">
+          <div class="card__inner">
+            <div class="card__face card__face--front">
+              <span class="card__lang">UA</span>
+              <p class="card__word" id="card-front" lang="uk"></p>
+              <p class="card__hint"><span class="only-touch">Торкніться, щоб перевернути</span><span class="only-pointer">Клацніть або натисніть <kbd>Space</kbd></span></p>
+            </div>
+            <div class="card__face card__face--back" aria-hidden="true">
+              <span class="card__lang card__lang--nl">NL</span>
+              <p class="card__word" id="card-back" lang="nl"></p>
+              <button class="speak-btn" type="button" id="speak" aria-label="Прослухати вимову" title="Прослухати (S)" tabindex="-1"><span data-icon="volume"></span></button>
+            </div>
+          </div>
+          <span class="card__stamp card__stamp--know" aria-hidden="true">Знаю</span>
+          <span class="card__stamp card__stamp--dont" aria-hidden="true">Не знаю</span>
+        </div>
+      </div>
+
+      <button class="answer-btn answer-btn--dont" type="button" id="btn-dont">
+        <span data-icon="close"></span><span>Не знаю</span><kbd class="only-pointer">←</kbd>
+      </button>
+      <button class="answer-btn answer-btn--flip" type="button" id="btn-flip" aria-label="Перевернути картку" title="Перевернути (Space)">
+        <span data-icon="flip"></span><span class="answer-btn__text">Перевернути</span><kbd class="only-pointer">Space</kbd>
+      </button>
+      <button class="answer-btn answer-btn--know" type="button" id="btn-know">
+        <span data-icon="check"></span><span>Знаю</span><kbd class="only-pointer">→</kbd>
+      </button>
+
+      <p class="sr-only" aria-live="polite" id="announcer"></p>
+    </section>
+
+    <section class="result" id="round-view" hidden>
+      <div class="result__emoji" aria-hidden="true">💪</div>
+      <h2 class="result__title" id="round-title">Раунд завершено</h2>
+      <p class="result__text" id="round-text"></p>
+      <div class="stats">
+        <div class="stat stat--know"><span class="stat__value" id="round-known">0</span><span class="stat__label">знаю</span></div>
+        <div class="stat stat--dont"><span class="stat__value" id="round-missed">0</span><span class="stat__label">повторити</span></div>
+      </div>
+      <div class="result__actions">
+        <button class="btn btn--primary btn--lg" type="button" id="next-round">Наступний раунд</button>
+      </div>
+      <p class="result__hint only-pointer muted"><kbd>Enter</kbd> — продовжити</p>
+    </section>
+
+    <section class="result" id="done-view" hidden>
+      <div class="result__emoji result__emoji--party" aria-hidden="true">🎉</div>
+      <h2 class="result__title">Словник завершено!</h2>
+      <p class="result__score" id="done-score">0 / 0</p>
+      <div class="stats">
+        <div class="stat"><span class="stat__value" id="done-words">0</span><span class="stat__label">вивчено слів</span></div>
+        <div class="stat"><span class="stat__value" id="done-time">00:00</span><span class="stat__label">час</span></div>
+        <div class="stat"><span class="stat__value" id="done-rounds">1</span><span class="stat__label" id="done-rounds-label">раунд</span></div>
+      </div>
+      <div class="result__actions">
+        <button class="btn btn--primary btn--lg" type="button" id="restart"><span data-icon="flip"></span>Повторити</button>
+        <a class="btn btn--secondary btn--lg" href="index.html">До словників</a>
+      </div>
+    </section>
+
+    <section class="result" id="missing-view" hidden>
+      <div class="result__emoji" aria-hidden="true">🗂️</div>
+      <h2 class="result__title" id="missing-title">Словник не знайдено</h2>
+      <p class="result__text" id="missing-text">Можливо, його було видалено.</p>
+      <div class="result__actions">
+        <a class="btn btn--primary btn--lg" href="index.html">До словників</a>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="assets/js/study.js"></script>
+</body>
+</html>

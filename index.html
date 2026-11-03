@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Особисті картки для вивчення нідерландських слів">
+  <meta name="theme-color" content="#f4f5fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1016" media="(prefers-color-scheme: dark)">
+  <title>Woordjes — мої словники</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="page-home">
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="index.html" aria-label="Woordjes — на головну">
+        <span class="brand__mark" aria-hidden="true">W</span>
+        <span class="brand__name">Woordjes</span>
+      </a>
+      <span class="topbar__tag">UA → NL</span>
+    </div>
+  </header>
+
+  <main class="container home">
+    <section class="hero">
+      <div class="hero__text">
+        <h1 class="hero__title">Мої словники</h1>
+        <p class="hero__subtitle" id="summary">Картки для вивчення нідерландських слів</p>
+      </div>
+      <div class="hero__actions">
+        <a class="btn btn--primary btn--lg" href="editor.html"><span data-icon="plus"></span>Створити словник</a>
+        <button class="btn btn--secondary btn--lg" type="button" data-action="import"><span data-icon="upload"></span>Імпортувати CSV</button>
+        <input class="visually-hidden" type="file" id="csv-input" accept=".csv,.txt,text/csv,text/plain" tabindex="-1" aria-hidden="true">
+      </div>
+    </section>
+
+    <section class="dict-grid" id="dict-list" aria-label="Список словників"></section>
+
+    <section class="empty" id="empty-state" hidden>
+      <div class="empty__art" aria-hidden="true">
+        <span class="empty__card empty__card--back"></span>
+        <span class="empty__card empty__card--front">huis</span>
+      </div>
+      <h2 class="empty__title">Поки що немає словників</h2>
+      <p class="empty__text">Створіть перший словник, імпортуйте CSV-файл або почніть із готового прикладу.</p>
+      <div class="empty__actions">
+        <a class="btn btn--primary btn--lg" href="editor.html"><span data-icon="plus"></span>Створити словник</a>
+        <button class="btn btn--secondary btn--lg" type="button" data-action="import"><span data-icon="upload"></span>Імпортувати CSV</button>
+        <button class="btn btn--ghost btn--lg" type="button" data-action="sample"><span data-icon="sparkle"></span>Додати приклад</button>
+      </div>
+    </section>
+
+    <aside class="csv-hint">
+      <h2 class="csv-hint__title">Формат CSV</h2>
+      <p>Кожен рядок — одна пара слів. Розділювач — двокрапка, крапка з комою, кома або табуляція.</p>
+      <pre class="csv-hint__code" lang="nl">будинок: huis
+вода: water
+машина: auto</pre>
+      <p class="muted">Файл також можна просто перетягнути на сторінку.</p>
+    </aside>
+  </main>
+
+  <div class="drop-overlay" aria-hidden="true">
+    <div class="drop-overlay__box"><span data-icon="upload"></span>Відпустіть CSV-файл, щоб імпортувати</div>
+  </div>
+
+  <script type="module" src="assets/js/home.js"></script>
+</body>
+</html>
